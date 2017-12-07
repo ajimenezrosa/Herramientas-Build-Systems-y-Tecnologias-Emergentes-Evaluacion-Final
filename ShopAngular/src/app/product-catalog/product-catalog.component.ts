@@ -11,7 +11,9 @@ import { SessionService } from '../session.service'
 export class ProductCatalogComponent implements OnInit {
 
   searchingText: string;
+
   products: Product[] = [];
+  productsToDisplay: Product[] = this.products;
 
   constructor(
     private productService: ProductService,
@@ -21,6 +23,18 @@ export class ProductCatalogComponent implements OnInit {
   ngOnInit() {
 
     this.performGetProducts()
+
+  }
+
+  inputModified(event: any) {
+
+    if (this.searchingText.length > 0) {
+      this.productsToDisplay = this.products.filter(
+        product => product.name.toLowerCase().indexOf(this.searchingText.toLowerCase()) >= 0;
+      )
+    } else {
+      this.productsToDisplay = this.products;
+    }
 
   }
 
@@ -44,6 +58,8 @@ export class ProductCatalogComponent implements OnInit {
           this.products.push(product);
 
         }
+
+        this.productsToDisplay = this.products
 
       },
       error => {

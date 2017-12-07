@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
     if (this.sessionService.user == null) {
 
-      //this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
 
     }
 

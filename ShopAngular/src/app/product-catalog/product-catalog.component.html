@@ -11,7 +11,7 @@
     <div class="col text-right">
 
       <p>¿Qué estás buscando?</p>
-      <input type="text" [(ngModel)]="searchingText">
+      <input type="text" [(ngModel)]="searchingText" (keyup)="inputModified($event)">
 
     </div>
 
@@ -19,7 +19,7 @@
 
   <div class="row">
 
-    <div class="col-3" *ngFor="let product of products">
+    <div class="col-3" *ngFor="let product of productsToDisplay">
       <app-product-item [product]="product"></app-product-item>
     </div>
 
