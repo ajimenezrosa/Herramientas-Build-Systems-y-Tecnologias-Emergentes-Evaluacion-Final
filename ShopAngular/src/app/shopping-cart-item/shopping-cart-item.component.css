@@ -4,9 +4,5 @@
   border-radius: 5px;
   border-width: 1px;
   border-color: gray;
-}
-
-
-input[type="number"] {
-   width:50px;
+  padding: 20px
 }

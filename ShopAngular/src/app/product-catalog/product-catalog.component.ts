@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../model/Product'
+import { Product } from '../model/Product';
 import { ProductService } from '../product.service';
-import { SessionService } from '../session.service'
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-product-catalog',
@@ -30,7 +30,7 @@ export class ProductCatalogComponent implements OnInit {
 
     if (this.searchingText.length > 0) {
       this.productsToDisplay = this.products.filter(
-        product => product.name.toLowerCase().indexOf(this.searchingText.toLowerCase()) >= 0;
+        product => product.name.toLowerCase().indexOf(this.searchingText.toLowerCase()) >= 0
       )
     } else {
       this.productsToDisplay = this.products;

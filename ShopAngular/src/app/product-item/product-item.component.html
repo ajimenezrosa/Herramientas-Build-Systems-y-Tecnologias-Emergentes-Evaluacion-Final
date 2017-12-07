@@ -8,9 +8,10 @@
 
   <h6> <strong> Unidades disponibles: </strong> {{product.stock}}</h6>
 
-  <button type="button" class="badge badge-primary">Ver más</button>
+  <a routerLink="/productDetail/{{product.id}}"> <button type="button" class="badge badge-primary">Ver más</button> </a>
 
-  <button type="button" class="badge badge-warning">Añadir</button>
+  <button type="button" class="badge badge-warning" (click)=addToCart()>Añadir</button>
+
   <input type="number" class="" [(ngModel)]="purchaseQuantity">
 
 </div>

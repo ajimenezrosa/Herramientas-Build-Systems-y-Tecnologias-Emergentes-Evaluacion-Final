@@ -27,11 +27,4 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  logout() {
-
-    this.sessionService.user = null;
-    this.router.navigate(['/login']);
-
-  }
-
 }

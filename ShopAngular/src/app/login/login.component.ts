@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model/User';
 import { LoginService } from '../login.service'
 import { SessionService } from '../session.service'
+import { ShoppingCartService } from '../shopping-cart.service';
 import { Router } from '@angular/router'
 
 @Component({
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   validLogin = true
 
   constructor(
+    private shoppingCartService: ShoppingCartService,
     private loginService: LoginService,
     private sessionService: SessionService,
     private router: Router
@@ -31,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    this.performLogin("user", "pass");
+    this.shoppingCartService.resetShoppingCart();
 
   }
 
