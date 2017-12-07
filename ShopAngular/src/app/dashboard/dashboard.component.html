@@ -1,0 +1,24 @@
+<div class="background">
+
+  <div class="container">
+
+    <nav class="nav bg-faded justify-content-end" role="navigation">
+      <a class="nav-link" (click)="showCart()">
+         <img src="../../assets/cart.png" alt="" height="20">
+         <span class="badge badge-danger">4</span>
+       </a>
+      <a class="nav-link" (click)="logout()">
+         <img src="../../assets/logout.png" alt="" height="20">
+       </a>
+    </nav>
+
+    <br>
+
+    <div class="jumbotron">
+
+      <app-product-catalog></app-product-catalog>
+
+    </div>
+
+  </div>
+</div>
