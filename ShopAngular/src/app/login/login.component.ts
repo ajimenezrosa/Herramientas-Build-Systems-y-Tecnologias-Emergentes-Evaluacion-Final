@@ -65,7 +65,8 @@ export class LoginComponent implements OnInit {
 
   performLogin(username: string, password: string) {
 
-    this.loginService.performLogin(username, password).subscribe(data => {
+    this.loginService.performLogin(username, password).subscribe(
+      data => {
 
       let user: User = {
         username: data.username,
@@ -76,7 +77,8 @@ export class LoginComponent implements OnInit {
 
       this.router.navigate(['./dashboard']);
 
-    }, error => {
+    },
+    error => {
 
       this.validLogin = false;
 
