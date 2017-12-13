@@ -27,11 +27,15 @@ class ProductCatalogComponent extends Component {
 
   componentDidMount() {
 
-    fetch
+    // fetch
 
   }
 
   render() {
+
+    if (this.dataSourceReady) {
+
+    }
 
     return (
 
