@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import HeaderComponent from './HeaderComponent.js';
 import ProductCatalogComponent from './ProductCatalogComponent';
 import { Jumbotron, Grid, Row } from 'react-bootstrap';
+import './DashboardComponent.css';
 
 class DashboardComponent extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            
+        }
+    }
 
     render() {
 
@@ -18,7 +27,7 @@ class DashboardComponent extends Component {
 
                     <br />
                     <Row>
-                        
+
                         <Jumbotron>
 
                             <ProductCatalogComponent />

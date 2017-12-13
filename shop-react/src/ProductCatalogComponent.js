@@ -1,43 +1,74 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ProductItemComponent from './ProductItemComponent.js'
+import { Grid, Row, Col } from 'react-bootstrap';
 
-class ProductCatalogComponent extends Component{
+class ProductCatalogComponent extends Component {
 
-    render(){
+  constructor(props) {
+    super(props);
 
-        return (
-            <div class="container">
-            
-              <div class="row">
-            
-                <div class="col">
-            
-                  <h1>Catálogo de productos</h1>
-            
-                </div>
-            
-                <div class="col text-right">
-            
-                  <p>¿Qué estás buscando?</p>
-                  <input type="text" />
-            
-                </div>
-            
-              </div>
-            
-              <div class="row">
-            
-                <div class="col-3">
-                  <ProductItemComponent />
-                </div>
-            
-              </div>
-            
-            </div>
-            
-        );
+    this.state = {
+      dataSourceReady: false,
+      searchingText: '',
+      productsToDisplay: [],
+      products: []
+    };
 
-    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+
+    this.setState({
+      searchingText: event.target.value
+    });
+
+  }
+
+  componentDidMount() {
+
+    fetch
+
+  }
+
+  render() {
+
+    return (
+
+      <Grid>
+
+        <Row>
+
+          <Col lg={6}>
+
+            <h1>Catálogo de productos</h1>
+
+          </Col>
+
+          <Col lg={6} className="text-right">
+            <p>¿Qué estás buscando?</p>
+            <input type="text" value={this.state.searchingText} onChange={this.handleChange} />
+          </Col>
+
+        </Row>
+
+        <Row>
+
+          {this.state.dataSourceReady &&
+            <Col>
+
+              <ProductItemComponent />
+
+            </Col>
+          }
+
+        </Row>
+
+      </Grid>
+
+    );
+
+  }
 
 }
 
