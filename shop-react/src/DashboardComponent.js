@@ -18,14 +18,13 @@ class DashboardComponent extends Component {
 
         return (
 
-            <div class="background">
+            <div className="background">
 
                 <Grid >
                     <Row>
                         <HeaderComponent />
                     </Row>
 
-                    <br />
                     <Row>
 
                         <Jumbotron>

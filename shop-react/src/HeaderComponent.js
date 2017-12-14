@@ -36,7 +36,7 @@ class HeaderComponent extends Component {
                 <Nav pullRight>
                     <NavItem onClick={this.openCart}>
                         <img src={cart} alt="" height="20" />
-                        <span class="badge badge-danger">4</span>
+                        <span className="badge badge-danger">4</span>
                     </NavItem>
                     <NavItem onClick={this.logout}>
                         <img src={logout} alt="" height="20" />

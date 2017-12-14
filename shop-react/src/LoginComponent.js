@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './LoginComponent.css';
 import DashboardComponent from './DashboardComponent.js'
+import User from './model/User';
+import Session from './model/Session';
 
 class LoginComponent extends Component {
 
@@ -87,10 +89,55 @@ class LoginComponent extends Component {
 
   performLogin(username, password) {
 
-    ReactDOM.render(
-      <DashboardComponent />,
-      document.getElementById('root')
-    );
+    var headers = {
+      'Authorization': 'Basic a2lkX3J5TDc4VTdXTTo4YzU5NWVhMDY0MmY0NjVlYjFhODZiMjY3NGEzMzFkNQ==',
+      'X-Kinvey-API-Version': '3',
+      'Content-Type': 'application/json'
+    };
+
+    var credentials = {
+      username: username,
+      password: password
+    };
+
+    var body = JSON.stringify(credentials);
+
+    fetch("https://baas.kinvey.com/user/kid_ryL78U7WM/login", {
+      method: 'post',
+      headers: headers,
+      body: body
+    }).then(response => response.json())
+      .then(responseJson => {
+
+        console.log(responseJson);
+
+        if (responseJson.error) {
+
+          this.setState({ 
+            validLogin: false 
+          })
+
+        } else {
+
+          var user = new User()
+          user.username = responseJson.username;
+          user.token=responseJson._kmd.authtoken;
+
+          var session = Session.getInstance();
+          session.user = user;
+
+          ReactDOM.render(
+            <DashboardComponent />,
+            document.getElementById('root')
+          );
+        }
+
+      })
+      .catch(error => {
+
+        console.error(error);
+
+      })
 
   }
 
