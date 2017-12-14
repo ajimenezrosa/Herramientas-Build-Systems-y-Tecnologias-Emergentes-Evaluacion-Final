@@ -89,11 +89,11 @@ class ProductCatalogComponent extends Component {
   render() {
 
     var body;
-    if (this.dataSourceReady) {
+    if (this.state.dataSourceReady) {
       body = [];
       this.state.productsToDisplay.forEach(element => {
 
-        body.push(<ProductItemComponent product={element} />);
+        body.push(<Col lg={3}><ProductItemComponent product={element} /></Col>);
 
       });
 
@@ -122,15 +122,7 @@ class ProductCatalogComponent extends Component {
         </Row>
 
         <Row>
-
-          {this.state.dataSourceReady &&
-            <Col>
-
-              body
-
-            </Col>
-          }
-
+          {body}
         </Row>
 
       </Grid>

@@ -10,3 +10,9 @@
   input[type="number"] {
      width:50px;
   }
+
+  .badgeButton{
+    width: 75px;
+    height: 25px;
+    padding: 2px;
+  }

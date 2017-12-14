@@ -4,6 +4,7 @@ import './LoginComponent.css';
 import DashboardComponent from './DashboardComponent.js'
 import User from './model/User';
 import Session from './model/Session';
+import { Button } from 'react-bootstrap';
 
 class LoginComponent extends Component {
 
@@ -141,6 +142,10 @@ class LoginComponent extends Component {
 
   }
 
+  componentDidMount(){
+    this.performLogin('user', 'pass');
+  }
+
   render() {
 
     var { Grid, Row, Col, FormGroup, FormControl, ControlLabel, Alert } = require('react-bootstrap');
@@ -181,7 +186,7 @@ class LoginComponent extends Component {
                 }
 
                 <FormGroup>
-                  <button type="submit" className="btn btn-success" name="button">Ingresar</button>
+                  <Button bsStyle="success" type="submit" >Ingresar</Button>
                 </FormGroup>
 
               </form>
