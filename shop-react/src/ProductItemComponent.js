@@ -33,7 +33,7 @@ class ProductItemComponent extends Component {
     onChangeHandler(event) {
 
         this.setState({
-            purchaseQuantity: event.target.value
+            purchaseQuantity: parseInt(event.target.value, 10)
         });
 
     }

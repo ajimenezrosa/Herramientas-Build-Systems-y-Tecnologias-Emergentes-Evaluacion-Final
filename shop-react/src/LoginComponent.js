@@ -143,10 +143,6 @@ class LoginComponent extends Component {
 
   }
 
-  componentDidMount(){
-    this.performLogin('user', 'pass');
-  }
-
   render() {
 
     var { Grid, Row, Col, FormGroup, FormControl, ControlLabel, Alert } = require('react-bootstrap');

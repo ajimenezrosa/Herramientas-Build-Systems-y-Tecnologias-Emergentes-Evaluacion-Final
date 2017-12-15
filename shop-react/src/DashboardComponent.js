@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import HeaderComponent from './HeaderComponent.js';
 import ProductCatalogComponent from './ProductCatalogComponent';
 import { Jumbotron, Grid, Row } from 'react-bootstrap';
@@ -12,6 +13,15 @@ class DashboardComponent extends Component {
         this.state = {
 
         }
+    }
+
+    componentDidMount() {
+
+        ReactDOM.render(
+            <ProductCatalogComponent />,
+            document.getElementById('content')
+        )
+
     }
 
     render() {
@@ -29,11 +39,7 @@ class DashboardComponent extends Component {
 
                         <Jumbotron>
 
-                            <div id="content">
-                              
-                                <ProductCatalogComponent />
-                                
-                            </div>
+                            <div id="content" />
 
                         </Jumbotron>
 

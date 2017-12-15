@@ -36,7 +36,7 @@ class ShoppingCartComponent extends Component {
 
         this.state.service.shoppingCartItems.forEach(element => {
 
-            body.push(<div key={element.id}><ShoppingCartItemComponent item={element} /></div>);
+            body.push(<Col lg={12} key={element.id}><ShoppingCartItemComponent item={element} /></Col>);
 
         });
 

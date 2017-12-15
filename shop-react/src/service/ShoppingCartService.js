@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DashboardComponent from '../DashboardComponent.js';
-import ShoppingCartItem from '../model/ShoppingCartItem';
-import Session from '../model/Session';
+import ShoppingCartItem from '../model/ShoppingCartItem.js';
+import Session from '../model/Session.js';
+import ProductCatalogComponent from '../ProductCatalogComponent';
 
 export default class ShoppingCartService {
 
     static instance = null;
 
-    shoppingCartItems = []
+    shoppingCartItems = [];
+
+    headerComponent;
 
     static getInstance() {
 
@@ -45,11 +47,14 @@ export default class ShoppingCartService {
 
         }
 
+        this.headerComponent.forceUpdate();
+
     }
 
     resetShoppingCart() {
 
         this.shoppingCartItems = [];
+        this.headerComponent.forceUpdate();
 
     }
 
@@ -69,17 +74,17 @@ export default class ShoppingCartService {
 
         item.product.stock -= item.quantity;
 
-        
         var session = Session.getInstance();
 
         var headers = {
             'Authorization': 'Kinvey ' + session.user.token,
-            'X-Kinvey-API-Version': '3'
+            'X-Kinvey-API-Version': '3',
+            'Content-Type': 'application/json'
         };
 
-        const body = JSON.stringify(item.product);
+        var body = JSON.stringify(item.product);
 
-        const url = "https://baas.kinvey.com/appdata/kid_ryL78U7WM/products/" + item.id;
+        const url = "https://baas.kinvey.com/appdata/kid_ryL78U7WM/products/" + item.product.id;
         fetch(url, {
             method: 'put',
             headers: headers,
@@ -101,8 +106,8 @@ export default class ShoppingCartService {
 
                         this.resetShoppingCart();
                         ReactDOM.render(
-                            <DashboardComponent />,
-                            document.getElementById('root')
+                            <ProductCatalogComponent />,
+                            document.getElementById('content')
                         );
 
                     } else {
