@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ShoppingCartItemComponent from './ShoppingCartItemComponent.js';
 import ShoppingCartService from './service/ShoppingCartService';
 import { Grid, Jumbotron, Row, Col, Button } from 'react-bootstrap';
+import ReactDOM from 'react-dom';
+import ProductCatalogComponent from './ProductCatalogComponent';
 
 class ShoppingCartComponent extends Component {
 
@@ -11,6 +13,21 @@ class ShoppingCartComponent extends Component {
         this.state = {
             service: ShoppingCartService.getInstance()
         }
+
+        this.pay = this.pay.bind(this);
+    }
+
+    cancel() {
+
+        ReactDOM.render(<ProductCatalogComponent />,
+            document.getElementById('content'));
+
+    }
+
+    pay() {
+
+        this.state.service.payShoppingCart();
+
     }
 
     render() {
@@ -57,8 +74,8 @@ class ShoppingCartComponent extends Component {
 
                                 <h1>Total: {this.state.service.total()}</h1>
 
-                                <Button bsStyle="danger">Cancelar</Button>
-                                <Button bsStyle="success">Pagar</Button>
+                                <Button bsStyle="danger" onClick={this.cancel}>Cancelar</Button>
+                                <Button bsStyle="success" onClick={this.pay}>Pagar</Button>
 
                             </Col>
 

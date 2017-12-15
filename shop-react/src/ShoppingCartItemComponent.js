@@ -4,11 +4,6 @@ import './ShoppingCartItemComponent.css';
 
 class ShoppingCartItemComponent extends Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
     render() {
 
         var img = require('./img/' + this.props.item.product.image);

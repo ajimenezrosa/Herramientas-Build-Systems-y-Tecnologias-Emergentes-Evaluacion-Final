@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DashboardComponent from '../DashboardComponent.js';
 import ShoppingCartItem from '../model/ShoppingCartItem';
+import Session from '../model/Session';
 
 export default class ShoppingCartService {
 
@@ -14,7 +15,7 @@ export default class ShoppingCartService {
         if (this.instance == null) {
             this.instance = new ShoppingCartService();
         }
-        
+
         return this.instance;
 
     }
@@ -39,7 +40,7 @@ export default class ShoppingCartService {
         } else if (quantity > 0) {
 
             const shoppingCartItem = new ShoppingCartItem(product, quantity);
-            
+
             this.shoppingCartItems.push(shoppingCartItem);
 
         }
@@ -68,36 +69,59 @@ export default class ShoppingCartService {
 
         item.product.stock -= item.quantity;
 
-        this.productService.performPutProduct(this.sessionService.user.token, item.product).subscribe(
-            data => {
+        
+        var session = Session.getInstance();
 
-                const index = this.shoppingCartItems.indexOf(item, 0);
+        var headers = {
+            'Authorization': 'Kinvey ' + session.user.token,
+            'X-Kinvey-API-Version': '3'
+        };
 
-                if (index === this.shoppingCartItems.length - 1) {
+        const body = JSON.stringify(item.product);
 
-                    this.resetShoppingCart();
-                    
-                    ReactDOM.render(
-                        <DashboardComponent />,
-                        document.getElementById('root')
-                      );
+        const url = "https://baas.kinvey.com/appdata/kid_ryL78U7WM/products/" + item.id;
+        fetch(url, {
+            method: 'put',
+            headers: headers,
+            body: body
+        }).then(response => response.json())
+            .then(responseJson => {
+
+                console.log(responseJson);
+
+                if (responseJson.error) {
+
+                    alert("Ocurrió un error al Pagar el carrito");
 
                 } else {
 
-                    const sci = this.shoppingCartItems[index + 1];
+                    const index = this.shoppingCartItems.indexOf(item, 0);
 
-                    this.payProduct(sci);
+                    if (index === this.shoppingCartItems.length - 1) {
+
+                        this.resetShoppingCart();
+                        ReactDOM.render(
+                            <DashboardComponent />,
+                            document.getElementById('root')
+                        );
+
+                    } else {
+
+                        const sci = this.shoppingCartItems[index + 1];
+
+                        this.payProduct(sci);
+
+                    }
 
                 }
 
-            },
-            error => {
+            })
+            .catch(error => {
 
-                alert("Ocurrió un error al Pagar el carrito");
+                console.error(error);
 
-            }
-        );
-
+            })
+        
     }
 
     total() {

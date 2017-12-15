@@ -15,10 +15,10 @@ export class ProductService {
       'X-Kinvey-API-Version': '3'
     };
 
-    let loginURL = 'https://baas.kinvey.com/appdata/kid_ryL78U7WM/products';
+    let url = 'https://baas.kinvey.com/appdata/kid_ryL78U7WM/products';
 
     let response = this.http.get(
-      loginURL,
+      url,
       {
         headers: headers
       }
@@ -35,10 +35,10 @@ export class ProductService {
       'X-Kinvey-API-Version': '3'
     };
 
-    let loginURL = 'https://baas.kinvey.com/appdata/kid_ryL78U7WM/products/' + productId;
+    let url = 'https://baas.kinvey.com/appdata/kid_ryL78U7WM/products/' + productId;
 
     let response = this.http.get(
-      loginURL,
+      url,
       {
         headers: headers
       }
@@ -55,10 +55,10 @@ export class ProductService {
       'X-Kinvey-API-Version': '3'
     };
 
-    let loginURL = 'https://baas.kinvey.com/appdata/kid_ryL78U7WM/products/' + product.id;
+    let url = 'https://baas.kinvey.com/appdata/kid_ryL78U7WM/products/' + product.id;
 
     let response = this.http.put(
-      loginURL,
+      url,
       product,
       {
         headers: headers
