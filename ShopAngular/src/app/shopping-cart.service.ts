@@ -99,7 +99,7 @@ export class ShoppingCartService {
 
   total(): number {
 
-    let total = 0;
+    var total = 0;
 
     for (let item of this.shoppingCartItems) {
       total += item.subtotal();

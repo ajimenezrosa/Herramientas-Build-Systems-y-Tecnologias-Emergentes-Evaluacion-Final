@@ -11,7 +11,6 @@ class ProductCatalogComponent extends Component {
 
     this.state = {
       dataSourceReady: false,
-      searchingText: '',
       productsToDisplay: [],
       products: []
     };
@@ -21,9 +20,25 @@ class ProductCatalogComponent extends Component {
 
   handleChange(event) {
 
-    this.setState({
-      searchingText: event.target.value
-    });
+    const searchingText = event.target.value;
+
+    if (searchingText.length > 0) {
+
+      const productsToDisplay = this.state.products.filter(
+        product => product.name.toLowerCase().indexOf(searchingText.toLowerCase()) >= 0
+      )
+
+      this.setState({
+        productsToDisplay: productsToDisplay
+      });
+
+    } else {
+
+      this.setState({
+        productsToDisplay: this.state.products
+      });
+
+    }
 
   }
 
@@ -90,13 +105,14 @@ class ProductCatalogComponent extends Component {
 
     var body;
     if (this.state.dataSourceReady) {
+      
       body = [];
+      
       this.state.productsToDisplay.forEach(element => {
 
-        body.push(<Col lg={3}><ProductItemComponent product={element} /></Col>);
+        body.push(<Col lg={3} key={element.id}><ProductItemComponent product={element} /></Col>);
 
       });
-
 
     } else {
       body = <h1>Cargando...</h1>
@@ -116,7 +132,7 @@ class ProductCatalogComponent extends Component {
 
           <Col lg={6} className="text-right">
             <p>¿Qué estás buscando?</p>
-            <input type="text" value={this.state.searchingText} onChange={this.handleChange} />
+            <input type="text" onChange={this.handleChange} />
           </Col>
 
         </Row>

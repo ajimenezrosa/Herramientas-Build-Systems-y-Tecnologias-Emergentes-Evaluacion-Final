@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './LoginComponent.css';
-import DashboardComponent from './DashboardComponent.js'
+import DashboardComponent from './DashboardComponent.js';
 import User from './model/User';
 import Session from './model/Session';
 import { Button } from 'react-bootstrap';
@@ -131,6 +131,7 @@ class LoginComponent extends Component {
             <DashboardComponent />,
             document.getElementById('root')
           );
+          
         }
 
       })

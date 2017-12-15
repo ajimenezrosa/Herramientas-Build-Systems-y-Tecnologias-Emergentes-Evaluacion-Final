@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import cart from './img/cart.png';
+import ReactDOM from 'react-dom';
 import logout from './img/logout.png';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import ShoppingCartService from './service/ShoppingCartService.js';
+import LoginComponent from './LoginComponent';
+import ShoppingCartComponent from './ShoppingCartComponent.js';
 
 class HeaderComponent extends Component {
 
@@ -9,22 +13,30 @@ class HeaderComponent extends Component {
         super(props);
 
         this.state = {
-
+            service: ShoppingCartService.getInstance()
         }
 
         this.openCart = this.openCart.bind(this);
         this.logout = this.logout.bind(this);
     }
 
-    openCart(event) {
+    openCart() {
 
-        alert("Abriendo Carrito");
+        ReactDOM.render(
+            <ShoppingCartComponent />,
+            document.getElementById('content')
+        );
 
     }
 
-    logout(event) {
+    logout() {
 
-        alert("Cerrando sesión");
+        this.state.service.resetShoppingCart()
+
+        ReactDOM.render(
+            <LoginComponent />,
+            document.getElementById('root')
+        );
 
     }
 
@@ -36,7 +48,10 @@ class HeaderComponent extends Component {
                 <Nav pullRight>
                     <NavItem onClick={this.openCart}>
                         <img src={cart} alt="" height="20" />
-                        <span className="badge badge-danger">4</span>
+                        {this.state.service.shoppingCartItems.length > 0 &&
+                            <span className="badge badge-danger">{this.state.service.shoppingCartItems.length}</span>
+                        }
+
                     </NavItem>
                     <NavItem onClick={this.logout}>
                         <img src={logout} alt="" height="20" />

@@ -10,7 +10,7 @@ class DashboardComponent extends Component {
         super(props)
 
         this.state = {
-            
+
         }
     }
 
@@ -29,7 +29,11 @@ class DashboardComponent extends Component {
 
                         <Jumbotron>
 
-                            <ProductCatalogComponent />
+                            <div id="content">
+                              
+                                <ProductCatalogComponent />
+                                
+                            </div>
 
                         </Jumbotron>
 

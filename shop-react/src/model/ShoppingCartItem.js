@@ -7,6 +7,9 @@ export default class ShoppingCartItem {
         return this.product.price * this.quantity;
     }
 
-    constructor() { }
+    constructor(product, quantity) {
+        this.product = product;
+        this.quantity = quantity;
+     }
 
 }
